@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import defaultImg from '../images/room-1.jpeg'
 import PropTypes from 'prop-types'
 
-export default function Room({ room }) {
+export default function Room({ room, item_id }) {
     const { name, slug, images, price } = room;
 
     return (
@@ -14,7 +14,7 @@ export default function Room({ room }) {
                     <h6>${price}</h6>
                     <p>per night</p>
                 </div>
-                <Link to={`/rooms/${slug}`} className="btn-primary room-link">
+                <Link to={`/rooms/${item_id}`} className="btn-primary room-link">
                     Features
                 </Link>
                 <p className="room-info ">{name}</p>
