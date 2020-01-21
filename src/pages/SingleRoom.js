@@ -7,11 +7,12 @@ import { RoomContext } from '../Context'
 import Navbar from '../components/Navbar'
 import { Redirect } from 'react-router-dom'
 import StyledHero from '../components/StyledHero'
+
 export default class SingleRoom extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            slug: this.props.match.params.slug,
+            slug: this.props.match.params.item_id,
             defaultBcg,
             redirect: false
         }
@@ -26,6 +27,13 @@ export default class SingleRoom extends Component {
             this.setState({ redirect: true })
         }
     }
+
+    reserveRoom = (e) => {
+        e.perventDefault()
+
+        // Make a GET request to reservations route on REST api.
+    }
+
     render() {
         if (this.state.redirect) {
             return (<Redirect to={'/login'} />)
@@ -73,6 +81,7 @@ export default class SingleRoom extends Component {
                         </article>
                     </div>
                 </section>
+                <button onCLick={this.reserveRoom} className="reserve btn-primary">Reserve</button>
                 <section className="room-extras">
                     <h6>extras</h6>
                     <ul className="extras">
