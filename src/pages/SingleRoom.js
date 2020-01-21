@@ -7,11 +7,12 @@ import { RoomContext } from '../Context'
 import Navbar from '../components/Navbar'
 import { Redirect } from 'react-router-dom'
 import StyledHero from '../components/StyledHero'
+
 export default class SingleRoom extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            slug: this.props.match.params.slug,
+            slug: this.props.match.params.item_id,
             defaultBcg,
             redirect: false
         }
