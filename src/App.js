@@ -13,6 +13,7 @@ import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 function App() {
+  localStorage.setItem("reserved", "")
   return (
     <>
 
