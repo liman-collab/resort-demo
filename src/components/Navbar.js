@@ -4,17 +4,27 @@ import { FaAlignRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 
-
-export default class Navbar extends Component {
-    state = {
-        isOpen: false,
+class Navbar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            //redirect: false,
+            isOpen: false
+        }
+        this.logout = this.logout.bind(this)
     }
+
     handleToogle = () => {
         this.setState({
             isOpen: !this.state.isOpen
         })
     }
 
+    logout() {
+        sessionStorage.setItem("userData", '');
+        sessionStorage.clear();
+        this.setState({ redirect: true })
+    }
     render() {
         return (
             <nav className="navbar">
@@ -34,9 +44,13 @@ export default class Navbar extends Component {
                         <li>
                             <Link to="/rooms">Rooms</Link>
                         </li>
+                        <li>
+                            <button className="logout-button" type="button" onClick={this.logout}>Logout</button>
+                        </li>
                     </ul>
                 </div>
             </nav>
         )
     }
 }
+export default Navbar

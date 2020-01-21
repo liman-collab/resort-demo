@@ -4,18 +4,32 @@ import Hero from '../components/Hero'
 import Banner from '../components/Banner'
 import { Link } from 'react-router-dom'
 import { RoomContext } from '../Context'
+import Navbar from '../components/Navbar'
+import { Redirect } from 'react-router-dom'
 import StyledHero from '../components/StyledHero'
 export default class SingleRoom extends Component {
     constructor(props) {
         super(props)
         this.state = {
             slug: this.props.match.params.slug,
-            defaultBcg
+            defaultBcg,
+            redirect: false
         }
     }
     static contextType = RoomContext;
     // componentDidMount() {}
+
+    componentWillMount() {
+        if (sessionStorage.getItem('userData')) {
+
+        } else {
+            this.setState({ redirect: true })
+        }
+    }
     render() {
+        if (this.state.redirect) {
+            return (<Redirect to={'/login'} />)
+        }
         const { getRoom } = this.context;
         const room = getRoom(this.state.slug);
         if (!room) {
@@ -30,6 +44,7 @@ export default class SingleRoom extends Component {
 
         return (
             <>
+                <Navbar />
                 <StyledHero img={images[0] || this.state.defaultBcg}>
                     <Banner title={`${name} room`}>
                         <Link to="/rooms" className="btn-primary">back to rooms</Link>

@@ -519,3 +519,6 @@ h6 {
 .login-txt{
 background-color:red
 } */
+.logout-button{
+  border-radius: 15
+}
