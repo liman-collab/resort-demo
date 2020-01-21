@@ -21,7 +21,7 @@ function App() {
         <Route exact path='/signup' component={Signup} />
         <Route exact path='/' component={Home} />
         <Route exact path='/rooms' component={Rooms} />
-        <Route exact path='/rooms/:slug' component={SingleRoom} />
+        <Route exact path='/rooms/:item_id' component={SingleRoom} />
         <Route component={Error} />
 
       </Switch>
