@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.reserve {
+  margin-left: calc(50% - 585px);
+  margin-bottom: 40px;
+}
+
 :root {
   --primaryColor: #af9a7d;
   --mainWhite: #fff;
