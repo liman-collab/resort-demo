@@ -14,7 +14,7 @@ export default function RoomList({ rooms }) {
             <div className="roomslist-center">
                 {
                     rooms.map(item => {
-                        return <Room key={item.id} room={item} />
+                        return <Room key={item.id} item_id={item.id} room={item} />
                     })
                 }
             </div>
