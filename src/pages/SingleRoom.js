@@ -14,7 +14,8 @@ export default class SingleRoom extends Component {
         this.state = {
             slug: this.props.match.params.item_id,
             defaultBcg,
-            redirect: false
+            redirect: false,
+            roomReserved: false
         }
     }
     static contextType = RoomContext;
@@ -29,9 +30,18 @@ export default class SingleRoom extends Component {
     }
 
     reserveRoom = (e) => {
-        e.perventDefault()
-
-        // Make a GET request to reservations route on REST api.
+        if (localStorage.getItem("reserved").includes(" " + this.state.slug + " ")) {
+            let newStr = localStorage.getItem("reserved").replace(" " + this.state.slug + " ", '')
+            localStorage.setItem("reserved", newStr)
+            this.setState({
+                roomReserved: false
+            })
+        } else {
+            localStorage.setItem("reserved", " " + this.state.slug + " ")
+            this.setState({
+                roomReserved: true
+            })
+        }
     }
 
     render() {
@@ -81,7 +91,7 @@ export default class SingleRoom extends Component {
                         </article>
                     </div>
                 </section>
-                <button onCLick={this.reserveRoom} className="reserve btn-primary">Reserve</button>
+                <button onClick={this.reserveRoom} className="reserve btn-primary">{this.state.roomReserved ? (<p>Unreserve</p>) : (<p>Reserve</p>)}</button>
                 <section className="room-extras">
                     <h6>extras</h6>
                     <ul className="extras">
